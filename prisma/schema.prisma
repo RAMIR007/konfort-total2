@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
 model User {
@@ -67,7 +67,7 @@ model Product {
   categoryId  String
   category    Category   @relation(fields: [categoryId], references: [id])
   material    String?
-  images      String[]   // URLs de imágenes
+  images      String     // JSON array de URLs de imágenes
   stock       Int        @default(0)
   isActive    Boolean    @default(true)
   orderItems  OrderItem[]
