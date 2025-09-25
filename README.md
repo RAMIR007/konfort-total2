@@ -1,3 +1,8 @@
+[![Node.js](https://img.shields.io/badge/Node.js-18+-green)](https://nodejs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-14+-black)](https://nextjs.org/)
+[![Vercel](https://img.shields.io/badge/Vercel-Deployed-black)](https://vercel.com)
+[![CI](https://github.com/YOUR_USERNAME/YOUR_REPO/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/YOUR_REPO/actions/workflows/ci.yml)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
