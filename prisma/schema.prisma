@@ -64,6 +64,7 @@ model Product {
   name        String
   description String?
   price       Float
+  costPrice   Float?     // Costo de adquisición del producto
   categoryId  String
   category    Category   @relation(fields: [categoryId], references: [id])
   material    String?
@@ -90,6 +91,7 @@ model Order {
   status        OrderStatus @default(PENDING)
   paymentMethod String      // 'efectivo'
   shippingAddress String
+  shippingCost  Float       @default(0) // Costo de envío
   voucherPdf    String?     // URL del PDF generado
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt

@@ -28,8 +28,46 @@ export async function GET(request: NextRequest) {
       }
     })
 
+    // Costos totales (suma de costos de productos vendidos)
+    const totalCosts = await prisma.orderItem.aggregate({
+      _sum: {
+        quantity: true
+      },
+      where: {
+        order: {
+          status: {
+            not: 'CANCELLED'
+          }
+        }
+      }
+    })
+
+    // Obtener costos por producto vendido
+    const productCosts = await prisma.$queryRaw`
+      SELECT
+        SUM(oi.quantity * COALESCE(p."costPrice", 0)) as totalCosts
+      FROM "OrderItem" oi
+      JOIN "Product" p ON oi."productId" = p.id
+      JOIN "Order" o ON oi."orderId" = o.id
+      WHERE o.status != 'CANCELLED'
+    ` as Array<{ totalCosts: string }>
+
+    // Gastos de transporte
+    const totalShippingCosts = await prisma.$queryRaw`
+      SELECT SUM("shippingCost") as totalShipping
+      FROM "Order"
+      WHERE status != 'CANCELLED'
+    ` as Array<{ totalShipping: string | null }>
+
     // Número de pedidos
     const totalOrders = await prisma.order.count()
+
+    // Calcular ganancias
+    const revenue = totalRevenue._sum.total || 0
+    const costs = parseFloat(productCosts[0]?.totalCosts || '0')
+    const shipping = parseFloat(totalShippingCosts[0]?.totalShipping || '0')
+    const totalCostsAll = costs + shipping
+    const totalProfit = revenue - totalCostsAll
 
     // Productos más vendidos
     const topProducts = await prisma.orderItem.groupBy({
@@ -82,7 +120,10 @@ export async function GET(request: NextRequest) {
     ` as SalesByMonthResult[]
 
     return NextResponse.json({
-      totalRevenue: totalRevenue._sum.total || 0,
+      totalRevenue: revenue,
+      totalCosts: totalCostsAll,
+      totalProfit,
+      totalShippingCosts: shipping,
       totalOrders,
       topProducts: topProductsWithNames,
       salesByMonth: salesByMonth.map(item => ({

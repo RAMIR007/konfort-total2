@@ -8,6 +8,9 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 
 interface Stats {
   totalRevenue: number
+  totalCosts: number
+  totalProfit: number
+  totalShippingCosts: number
   totalOrders: number
   topProducts: Array<{
     productId: string
@@ -83,7 +86,7 @@ export default function AdminDashboard() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Estadísticas principales */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 mb-8">
           <div className="bg-white p-6 rounded-lg shadow-sm">
             <h3 className="text-sm font-medium text-gray-500">Ingresos Totales</h3>
             <p className="text-2xl font-bold text-green-600">
@@ -91,21 +94,33 @@ export default function AdminDashboard() {
             </p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-sm font-medium text-gray-500">Total de Pedidos</h3>
+            <h3 className="text-sm font-medium text-gray-500">Costos Totales</h3>
+            <p className="text-2xl font-bold text-red-600">
+              ${stats?.totalCosts.toFixed(2) || '0.00'}
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-sm">
+            <h3 className="text-sm font-medium text-gray-500">Ganancias Netas</h3>
             <p className="text-2xl font-bold text-blue-600">
+              ${stats?.totalProfit.toFixed(2) || '0.00'}
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-sm">
+            <h3 className="text-sm font-medium text-gray-500">Gastos de Envío</h3>
+            <p className="text-2xl font-bold text-orange-600">
+              ${stats?.totalShippingCosts.toFixed(2) || '0.00'}
+            </p>
+          </div>
+          <div className="bg-white p-6 rounded-lg shadow-sm">
+            <h3 className="text-sm font-medium text-gray-500">Total de Pedidos</h3>
+            <p className="text-2xl font-bold text-purple-600">
               {stats?.totalOrders || 0}
             </p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm">
             <h3 className="text-sm font-medium text-gray-500">Productos Más Vendidos</h3>
-            <p className="text-2xl font-bold text-purple-600">
+            <p className="text-2xl font-bold text-indigo-600">
               {stats?.topProducts.length || 0}
-            </p>
-          </div>
-          <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-sm font-medium text-gray-500">Ganancias</h3>
-            <p className="text-2xl font-bold text-orange-600">
-              ${stats?.totalRevenue.toFixed(2) || '0.00'}
             </p>
           </div>
         </div>
