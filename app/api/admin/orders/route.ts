@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma/client'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth/config'
+import { OrderStatus } from '@prisma/client'
 
 export async function GET(request: NextRequest) {
   try {
@@ -17,7 +18,7 @@ export async function GET(request: NextRequest) {
 
     const skip = (page - 1) * limit
 
-    const where = status ? { status: status as any } : {}
+    const where = status ? { status: status as OrderStatus } : {}
 
     const orders = await prisma.order.findMany({
       where,

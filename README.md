@@ -1,80 +1,311 @@
-[![Node.js](https://img.shields.io/badge/Node.js-18+-green)](https://nodejs.org/)
-[![Next.js](https://img.shields.io/badge/Next.js-14+-black)](https://nextjs.org/)
-[![Vercel](https://img.shields.io/badge/Vercel-Deployed-black)](https://vercel.com)
-[![CI](https://github.com/YOUR_USERNAME/YOUR_REPO/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/YOUR_REPO/actions/workflows/ci.yml)
+# 🏠 Konfort Total 2 - Tienda en Línea de Muebles
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Tienda en línea moderna y completa para muebles, especialmente diseñada para el mercado cubano. Desarrollada con las mejores prácticas de desarrollo web, incluyendo diseño responsivo, optimización de rendimiento, seguridad y accesibilidad.
 
-## Getting Started
+## ✨ Características Principales
 
-First, run the development server:
+- 🛋️ **Catálogo completo de muebles** sin necesidad de registro
+- 🛒 **Carrito de compras funcional** con gestión de cantidades
+- 🔐 **Autenticación segura** con NextAuth.js
+- 💰 **Sistema de pagos en efectivo** con generación automática de vales PDF
+- 📊 **Panel administrativo** con estadísticas detalladas de ventas
+- 📱 **Diseño responsivo** optimizado para móviles y desktop
+- ♿ **Accesibilidad WCAG** compliant
+- 🚀 **Despliegue optimizado** en Vercel
+- 🌐 **Interfaz completamente en español**
+
+## 🛠️ Tecnologías Utilizadas
+
+### Frontend
+- **Next.js 15** - Framework React con App Router
+- **TypeScript** - Tipado estático
+- **Tailwind CSS** - Framework CSS utilitario
+- **Recharts** - Gráficos interactivos
+
+### Backend
+- **Next.js API Routes** - API RESTful
+- **Prisma ORM** - Object-Relational Mapping
+- **PostgreSQL** - Base de datos relacional (Supabase)
+- **NextAuth.js** - Autenticación
+
+### Generación de Documentos
+- **jsPDF** - Generación de vales PDF
+
+### Estado y Gestión
+- **Zustand** - Gestión de estado del carrito
+
+### Despliegue
+- **Vercel** - Plataforma de despliegue
+- **GitHub** - Control de versiones
+
+## 📋 Prerrequisitos
+
+- **Node.js** 20.x o superior
+- **npm** o **yarn**
+- **PostgreSQL** database (recomendamos Supabase)
+- **Git** para control de versiones
+
+## 🚀 Instalación y Configuración
+
+### 1. Clonar el Repositorio
+
+```bash
+git clone https://github.com/RAMIR007/konfort-total2.git
+cd konfort-total2
+```
+
+### 2. Instalar Dependencias
+
+```bash
+npm install
+```
+
+### 3. Configurar Variables de Entorno
+
+Copia el archivo de ejemplo y configura tus variables:
+
+```bash
+cp .env.example .env
+```
+
+Edita `.env` con tus valores:
+
+```env
+# Base de datos PostgreSQL (Supabase recomendado)
+DATABASE_URL="postgresql://postgres:tu_password@db.tu_proyecto.supabase.co:5432/postgres?sslmode=require"
+
+# NextAuth
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="tu_secret_muy_seguro_aqui"
+
+# Vercel Blob (opcional, para imágenes)
+BLOB_READ_WRITE_TOKEN="tu_token_de_vercel_blob"
+
+# Entorno
+NODE_ENV="development"
+```
+
+### 4. Configurar la Base de Datos
+
+```bash
+# Generar cliente Prisma
+npx prisma generate
+
+# Ejecutar migraciones
+npx prisma db push
+```
+
+### 5. Ejecutar el Servidor de Desarrollo
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+La aplicación estará disponible en `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Estructura del Proyecto
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+konfort-total2/
+├── app/                          # Páginas Next.js (App Router)
+│   ├── (auth)/                   # Páginas de autenticación
+│   ├── (dashboard)/              # Panel administrativo
+│   ├── api/                      # API Routes
+│   ├── cart/                     # Página del carrito
+│   ├── checkout/                 # Página de checkout
+│   ├── products/                 # Catálogo de productos
+│   └── admin/                    # Panel administrativo
+├── components/                   # Componentes React
+│   ├── admin/                    # Componentes del admin
+│   ├── cart/                     # Componentes del carrito
+│   ├── layout/                   # Layout y navegación
+│   ├── product/                  # Componentes de productos
+│   └── ui/                       # Componentes de UI reutilizables
+├── lib/                          # Utilidades y configuración
+│   ├── auth/                     # Configuración de NextAuth
+│   ├── pdf/                      # Generación de PDFs
+│   ├── prisma/                   # Cliente Prisma
+│   ├── stores/                   # Zustand stores
+│   └── utils/                    # Utilidades
+├── prisma/                       # Schema de base de datos
+├── public/                       # Archivos estáticos
+├── styles/                       # Estilos globales
+└── types/                        # Definiciones TypeScript
+```
 
-## Learn More
+## 🗄️ Base de Datos
 
-To learn more about Next.js, take a look at the following resources:
+### Esquema Principal
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Users**: Usuarios del sistema (clientes y administradores)
+- **Products**: Catálogo de productos con categorías
+- **Orders**: Pedidos con items y estado
+- **Categories**: Categorías de productos
+- **Sessions/Accounts**: Autenticación NextAuth
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Comandos Útiles de Prisma
 
-## Deploy on Vercel
+```bash
+# Ver esquema actual
+npx prisma studio
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Crear migración (si usas migraciones)
+npx prisma migrate dev
 
-### Prerequisites
+# Resetear base de datos
+npx prisma migrate reset
 
-1. **Vercel Account**: Sign up at [vercel.com](https://vercel.com) if you don't have an account.
-2. **GitHub Repository**: Push your code to a GitHub repository for automatic deployments.
+# Generar tipos
+npx prisma generate
+```
 
-### Database Setup (PostgreSQL)
+## 🔐 Autenticación
 
-This project uses Prisma with PostgreSQL. For production, use Vercel Postgres:
+Utiliza NextAuth.js con las siguientes características:
 
-1. In your Vercel dashboard, go to your project > Storage > Create Database > Postgres.
-2. Create a new PostgreSQL database.
-3. Copy the `DATABASE_URL` from the database settings.
-4. Run database migrations: In Vercel, go to your project > Settings > Functions > Command, and add `npx prisma migrate deploy` as a build command, or run it manually after deployment.
+- **Registro/Login** con email y contraseña
+- **Sesiones JWT** para estado de autenticación
+- **Protección de rutas** administrativa
+- **Adaptador Prisma** para persistencia
 
-### Environment Variables
+## 📊 Panel Administrativo
 
-Set the following environment variables in Vercel (Project Settings > Environment Variables):
+Accesible en `/admin` con las siguientes funcionalidades:
 
-- `DATABASE_URL`: Your Vercel Postgres connection string
-- `NEXTAUTH_URL`: Your production URL (e.g., `https://your-app.vercel.app`)
-- `NEXTAUTH_SECRET`: A random secret key (generate with `openssl rand -base64 32`)
+- **Estadísticas de ventas**: Ingresos totales, número de pedidos
+- **Productos más vendidos**: Ranking de productos
+- **Gestión de pedidos**: Visualización y actualización de estados
+- **Gestión de productos**: CRUD completo
+- **Costos y ganancias**: Análisis financiero
 
-Optional:
-- `JWT_SECRET`: Additional JWT secret if needed
-- Email configuration variables if using email provider
+## 🛒 Flujo de Compra
 
-### Deployment Steps
+1. **Navegación**: Usuario explora catálogo sin registro
+2. **Carrito**: Agrega productos al carrito
+3. **Checkout**: Debe registrarse/login para proceder
+4. **Pago**: Sistema de pago en efectivo
+5. **Confirmación**: Generación automática de vale PDF
 
-1. Connect your GitHub repository to Vercel.
-2. Vercel will automatically detect Next.js and deploy.
-3. The `vercel.json` file is configured for optimal deployment.
-4. After deployment, run Prisma migrations if needed.
+## 📄 Generación de Vales PDF
 
-### Custom Domain
+Los vales de pago se generan automáticamente con:
 
-To add a custom domain:
-1. In Vercel dashboard, go to your project > Settings > Domains.
-2. Add your domain and follow the DNS configuration instructions.
+- Datos del cliente
+- Detalles completos del pedido
+- Código QR para validación
+- Instrucciones de pago en efectivo
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🚀 Despliegue en Producción
+
+### Vercel (Recomendado)
+
+1. **Conectar repositorio** en Vercel
+2. **Configurar variables de entorno**:
+   - `DATABASE_URL`: Connection string de Supabase
+   - `NEXTAUTH_URL`: URL de producción
+   - `NEXTAUTH_SECRET`: Secret seguro
+3. **Desplegar**: Vercel ejecuta build automáticamente
+
+### Variables de Entorno en Producción
+
+```env
+DATABASE_URL=postgresql://postgres:tu_password@db.tu_proyecto.supabase.co:5432/postgres?sslmode=require
+NEXTAUTH_URL=https://tu-dominio.vercel.app
+NEXTAUTH_SECRET=un_secret_muy_seguro_de_al_menos_32_caracteres
+NODE_ENV=production
+```
+
+## 🧪 Testing
+
+```bash
+# Ejecutar tests (si implementas)
+npm test
+
+# Linting
+npm run lint
+
+# Type checking
+npm run type-check
+```
+
+## 🤝 Contribución
+
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+### Guías de Contribución
+
+- Sigue las convenciones de código TypeScript
+- Escribe commits descriptivos
+- Actualiza documentación según cambios
+- Prueba tus cambios antes de enviar PR
+
+## 📝 API Endpoints
+
+### Productos
+- `GET /api/products` - Listar productos con filtros
+- `GET /api/products/[id]` - Detalles de producto
+
+### Autenticación
+- `POST /api/auth/register` - Registro de usuario
+- `POST /api/auth/signin` - Login (maneja NextAuth)
+
+### Pedidos
+- `POST /api/orders` - Crear pedido
+- `GET /api/admin/orders` - Listar pedidos (admin)
+
+### Administración
+- `GET /api/admin/stats` - Estadísticas de ventas
+- `GET /api/admin/orders/[id]` - Detalles de pedido
+
+## 🔒 Seguridad
+
+- **Headers de seguridad** configurados en `vercel.json`
+- **Validación de entrada** en todas las APIs
+- **Autenticación requerida** para operaciones sensibles
+- **SQL Injection prevention** con Prisma ORM
+- **XSS protection** con sanitización de datos
+
+## 📱 Características de Accesibilidad
+
+- **Navegación por teclado** completa
+- **Etiquetas ARIA** apropiadas
+- **Contraste de colores** WCAG AA compliant
+- **Texto alternativo** en imágenes
+- **Estructura semántica** HTML5
+
+## 🐛 Solución de Problemas
+
+### Error de conexión a base de datos
+- Verifica `DATABASE_URL` en `.env`
+- Asegúrate de que Supabase esté activo
+- Revisa restricciones de IP en Supabase
+
+### Error de build en producción
+- Ejecuta `npm run build` localmente
+- Verifica que no haya errores de TypeScript
+- Asegúrate de que todas las dependencias estén instaladas
+
+### Problemas de autenticación
+- Verifica `NEXTAUTH_SECRET` (mínimo 32 caracteres)
+- Confirma `NEXTAUTH_URL` correcto
+- Revisa configuración de NextAuth
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+
+## 👥 Soporte
+
+Para soporte técnico o preguntas:
+
+- 📧 Email: [tu-email@ejemplo.com]
+- 🐛 Issues: [GitHub Issues](https://github.com/RAMIR007/konfort-total2/issues)
+- 📖 Wiki: [Documentación completa](https://github.com/RAMIR007/konfort-total2/wiki)
+
+---
+
+**Desarrollado con ❤️ para el mercado cubano**

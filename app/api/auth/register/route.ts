@@ -37,11 +37,11 @@ export async function POST(request: NextRequest) {
         name,
         phone,
         address,
-      } as any
+      }
     })
 
     // Retornar el usuario sin la contraseña
-    const { password: _, ...userWithoutPassword } = user as any
+    const { password: _, ...userWithoutPassword } = user
 
     return NextResponse.json(
       { message: 'Usuario registrado exitosamente', user: userWithoutPassword },

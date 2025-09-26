@@ -3,6 +3,12 @@ import { prisma } from '@/lib/prisma/client';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth/config';
 
+interface CartItem {
+  productId: string;
+  quantity: number;
+  price: number;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
@@ -39,7 +45,7 @@ export async function POST(request: NextRequest) {
 
       // Crear los items de la orden
       const orderItems = await Promise.all(
-        items.map((item: any) =>
+        items.map((item: CartItem) =>
           tx.orderItem.create({
             data: {
               orderId: newOrder.id,

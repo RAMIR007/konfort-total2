@@ -6,6 +6,15 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useCartStore } from '@/lib/stores/cart';
 import { downloadVoucher } from '@/lib/pdf/generateVoucher';
+import { OrderItem } from '@prisma/client';
+
+interface OrderItemWithProduct extends OrderItem {
+  product: {
+    id: string;
+    name: string;
+    price: number;
+  };
+}
 
 export default function CheckoutPage() {
   const { data: session, status } = useSession();
@@ -81,7 +90,7 @@ export default function CheckoutPage() {
       downloadVoucher({
         ...order,
         user: session.user,
-        items: order.items.map((item: any) => ({
+        items: order.items.map((item: OrderItemWithProduct) => ({
           ...item,
           product: item.product,
         })),

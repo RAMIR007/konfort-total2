@@ -3,6 +3,12 @@ import { prisma } from '@/lib/prisma/client'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth/config'
 
+interface SalesByMonthResult {
+  month: Date
+  revenue: string
+  orders: string
+}
+
 export async function GET(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions)
@@ -73,7 +79,7 @@ export async function GET(request: NextRequest) {
         AND "createdAt" >= NOW() - INTERVAL '12 months'
       GROUP BY DATE_TRUNC('month', "createdAt")
       ORDER BY month DESC
-    ` as any[]
+    ` as SalesByMonthResult[]
 
     return NextResponse.json({
       totalRevenue: totalRevenue._sum.total || 0,

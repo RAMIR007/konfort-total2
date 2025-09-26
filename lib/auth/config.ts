@@ -3,8 +3,14 @@ import { PrismaAdapter } from '@auth/prisma-adapter'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { prisma } from '@/lib/prisma/client'
 import bcrypt from 'bcryptjs'
+import { User } from '@prisma/client'
+
+interface UserWithPassword extends User {
+  password: string
+}
 
 export const authOptions: NextAuthOptions = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   adapter: PrismaAdapter(prisma) as any,
   providers: [
     CredentialsProvider({
@@ -20,13 +26,13 @@ export const authOptions: NextAuthOptions = {
 
         const user = await prisma.user.findUnique({
           where: { email: credentials.email }
-        })
+        }) as UserWithPassword | null
 
-        if (!user || !(user as any).password) {
+        if (!user || !user.password) {
           return null
         }
 
-        const isValidPassword = await bcrypt.compare(credentials.password, (user as any).password)
+        const isValidPassword = await bcrypt.compare(credentials.password, user.password)
         if (!isValidPassword) {
           return null
         }
