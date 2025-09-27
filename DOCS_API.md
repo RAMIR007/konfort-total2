@@ -1,6 +1,6 @@
-# 🔌 Documentación de API - Konfort Total 2
+# 🔌 Documentación de API - Konfort Total
 
-Documentación completa de todos los endpoints de la API REST de Konfort Total 2.
+Documentación completa de todos los endpoints de la API REST de Konfort Total.
 
 ## 📋 Información General
 

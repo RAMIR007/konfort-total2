@@ -1,6 +1,6 @@
-# 🚀 Guía de Instalación - Konfort Total 2
+# 🚀 Guía de Instalación - Konfort Total
 
-Guía paso a paso para instalar y configurar Konfort Total 2 en tu entorno local y producción.
+Guía paso a paso para instalar y configurar Konfort Total en tu entorno local y producción.
 
 ## 📋 Requisitos Previos
 
@@ -100,7 +100,7 @@ npm run dev
 
 ### Paso 7: Verificar Instalación
 1. Abre `http://localhost:3000` en tu navegador
-2. Deberías ver la página principal de Konfort Total 2
+2. Deberías ver la página principal de Konfort Total
 3. Prueba navegar por el catálogo
 
 ---

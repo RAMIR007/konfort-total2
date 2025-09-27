@@ -1,4 +1,4 @@
-# 🏠 Konfort Total 2 - Tienda en Línea de Muebles
+# 🏠 Konfort Total - Tienda en Línea de Muebles
 
 Tienda en línea moderna y completa para muebles, especialmente diseñada para el mercado cubano. Desarrollada con las mejores prácticas de desarrollo web, incluyendo diseño responsivo, optimización de rendimiento, seguridad y accesibilidad.
 
@@ -50,8 +50,8 @@ Tienda en línea moderna y completa para muebles, especialmente diseñada para e
 ### 1. Clonar el Repositorio
 
 ```bash
-git clone https://github.com/RAMIR007/konfort-total2.git
-cd konfort-total2
+git clone https://github.com/RAMIR007/konfort-total.git
+cd konfort-total
 ```
 
 ### 2. Instalar Dependencias
@@ -106,7 +106,7 @@ La aplicación estará disponible en `http://localhost:3000`
 ## 📁 Estructura del Proyecto
 
 ```
-konfort-total2/
+konfort-total/
 ├── app/                          # Páginas Next.js (App Router)
 │   ├── (auth)/                   # Páginas de autenticación
 │   ├── (dashboard)/              # Panel administrativo
@@ -303,8 +303,8 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 Para soporte técnico o preguntas:
 
 - 📧 Email: [tu-email@ejemplo.com]
-- 🐛 Issues: [GitHub Issues](https://github.com/RAMIR007/konfort-total2/issues)
-- 📖 Wiki: [Documentación completa](https://github.com/RAMIR007/konfort-total2/wiki)
+- 🐛 Issues: [GitHub Issues](https://github.com/RAMIR007/konfort-total/issues)
+- 📖 Wiki: [Documentación completa](https://github.com/RAMIR007/konfort-total/wiki)
 
 ---
 

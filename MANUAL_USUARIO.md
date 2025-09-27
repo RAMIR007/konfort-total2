@@ -1,6 +1,6 @@
-# 📖 Manual de Usuario - Konfort Total 2
+# 📖 Manual de Usuario - Konfort Total
 
-Bienvenido a **Konfort Total 2**, tu tienda en línea de muebles especializada para Cuba. Esta guía te ayudará a navegar y utilizar todas las funcionalidades de nuestra plataforma.
+Bienvenido a **Konfort Total**, tu tienda en línea de muebles especializada para Cuba. Esta guía te ayudará a navegar y utilizar todas las funcionalidades de nuestra plataforma.
 
 ## 🎯 Inicio Rápido
 
@@ -306,6 +306,6 @@ Si encuentras problemas no resueltos:
 
 ---
 
-¡Gracias por elegir **Konfort Total 2**! Tu satisfacción es nuestra prioridad.
+¡Gracias por elegir **Konfort Total**! Tu satisfacción es nuestra prioridad.
 
 *Última actualización: Septiembre 2025*
