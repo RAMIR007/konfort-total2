@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma/client';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth/config';
+import type { PrismaClient } from '@prisma/client';
 
 interface CartItem {
   productId: string;
@@ -31,7 +32,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Crear la orden en una transacción
-    const order = await prisma.$transaction(async (tx) => {
+    const order = await prisma.$transaction(async (tx: Omit<PrismaClient, '$connect' | '$disconnect' | '$on' | '$transaction' | '$use' | '$extends'>) => {
       // Crear la orden
       const newOrder = await tx.order.create({
         data: {
