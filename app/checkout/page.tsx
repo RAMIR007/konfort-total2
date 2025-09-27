@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useCartStore } from '@/lib/stores/cart';
 import { downloadVoucher } from '@/lib/pdf/generateVoucher';
-import { OrderItem } from '@prisma/client';
+import { OrderItem } from '@/types/prisma-enums';
 
 interface OrderItemWithProduct extends OrderItem {
   product: {
