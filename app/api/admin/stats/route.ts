@@ -97,7 +97,7 @@ export async function GET(request: NextRequest) {
       }
     })
 
-    const topProductsWithNames = topProducts.map(item => {
+    const topProductsWithNames = topProducts.map((item: { productId: string; _sum: { quantity: number | null } }) => {
       const product = products.find(p => p.id === item.productId)
       return {
         productId: item.productId,
