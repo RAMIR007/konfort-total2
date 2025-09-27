@@ -11,7 +11,7 @@ export const prisma =
     errorFormat: 'pretty',
     datasources: {
       db: {
-        url: process.env.DATABASE_URL,
+        url: process.env.DATABASE_URL || 'file:./dev.db',
       },
     },
   })
