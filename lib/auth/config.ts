@@ -3,7 +3,7 @@ import { PrismaAdapter } from '@auth/prisma-adapter'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { prisma } from '@/lib/prisma/client'
 import bcrypt from 'bcryptjs'
-import { User } from '@prisma/client'
+import { User } from '@/types/prisma-enums'
 
 interface UserWithPassword extends User {
   password: string
