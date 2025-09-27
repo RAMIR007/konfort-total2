@@ -84,7 +84,7 @@ export async function GET(request: NextRequest) {
     })
 
     // Obtener nombres de productos
-    const productIds = topProducts.map(p => p.productId)
+    const productIds = topProducts.map((p: { productId: string }) => p.productId)
     const products = await prisma.product.findMany({
       where: {
         id: {
