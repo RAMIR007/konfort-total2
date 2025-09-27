@@ -98,7 +98,7 @@ export async function GET(request: NextRequest) {
     })
 
     const topProductsWithNames = topProducts.map((item: { productId: string; _sum: { quantity: number | null } }) => {
-      const product = products.find(p => p.id === item.productId)
+      const product = products.find((p: { id: string; name: string }) => p.id === item.productId)
       return {
         productId: item.productId,
         name: product?.name || 'Producto desconocido',
