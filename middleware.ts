@@ -40,21 +40,36 @@ export default withAuth(
 
     // Security headers for API routes
     if (isApiRoute) {
-      const response = NextResponse.next()
+      const response = NextResponse.next();
 
       // Add security headers
-      response.headers.set('X-DNS-Prefetch-Control', 'on')
-      response.headers.set('X-XSS-Protection', '1; mode=block')
-      response.headers.set('X-Frame-Options', 'DENY')
-      response.headers.set('X-Content-Type-Options', 'nosniff')
-      response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
+      response.headers.set("X-DNS-Prefetch-Control", "on");
+      response.headers.set("X-XSS-Protection", "1; mode=block");
+      response.headers.set("X-Frame-Options", "DENY");
+      response.headers.set("X-Content-Type-Options", "nosniff");
+      response.headers.set(
+        "Referrer-Policy",
+        "strict-origin-when-cross-origin"
+      );
 
       // CORS headers
-      response.headers.set('Access-Control-Allow-Origin', process.env.NODE_ENV === 'production' ? 'https://yourdomain.com' : 'http://localhost:3000')
-      response.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-      response.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+      // CORS headers
+      response.headers.set(
+        "Access-Control-Allow-Origin",
+        process.env.NODE_ENV === "production"
+          ? process.env.NEXTAUTH_URL || "https://yourdomain.com"
+          : "http://localhost:3000"
+      );
+      response.headers.set(
+        "Access-Control-Allow-Methods",
+        "GET, POST, PUT, DELETE, OPTIONS"
+      );
+      response.headers.set(
+        "Access-Control-Allow-Headers",
+        "Content-Type, Authorization"
+      );
 
-      return response
+      return response;
     }
 
     // Si no está autenticado y trata de acceder a checkout
