@@ -3,7 +3,7 @@ import { PrismaAdapter } from '@auth/prisma-adapter'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { prisma } from '@/lib/prisma/client'
 import bcrypt from 'bcryptjs'
-import { User } from '@/types/prisma-enums'
+import { User, Role } from '@/types/prisma-enums'
 
 interface UserWithPassword extends User {
   password: string
@@ -59,7 +59,7 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       if (token) {
         session.user.id = token.sub!
-        session.user.role = token.role as string
+        session.user.role = token.role as Role
       }
       return session
     }

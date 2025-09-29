@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['lucide-react', '@heroicons/react', 'recharts'],
     optimizeCss: true,
     webVitalsAttribution: ['CLS', 'LCP'],
-    typedRoutes: true,
+    // typedRoutes: true, // Disabled due to route typing issues
   },
 
   // Compression and optimization
