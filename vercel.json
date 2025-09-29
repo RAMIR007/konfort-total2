@@ -2,7 +2,7 @@
   "buildCommand": "npm install && prisma generate && npm run build",
   "outputDirectory": ".next",
   "framework": "nextjs",
-  "installCommand": "npm ci",
+  "installCommand": "npm install",
   "env": {
     "NODE_ENV": "production"
   },
