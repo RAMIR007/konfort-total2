@@ -25,7 +25,7 @@ Tienda en línea moderna y completa para muebles, especialmente diseñada para e
 ### Backend
 - **Next.js API Routes** - API RESTful con optimizaciones
 - **Prisma ORM 6.16.2** - Object-Relational Mapping moderno
-- **PostgreSQL** - Base de datos relacional (Supabase recomendado)
+- **PostgreSQL** - Base de datos relacional (Prisma Data Platform)
 - **NextAuth.js 4.24.11** - Autenticación segura y flexible
 
 ### Generación de Documentos
@@ -43,10 +43,10 @@ Tienda en línea moderna y completa para muebles, especialmente diseñada para e
 
 - **Node.js** 20.x o superior (recomendado 22.x LTS)
 - **npm** 18.x o superior (viene con Node.js)
-- **PostgreSQL** database (recomendamos Supabase para producción)
+- **PostgreSQL** database (recomendamos Prisma Data Platform)
 - **Git** para control de versiones
 - **Cuenta de Vercel** para despliegue (opcional)
-- **Cuenta de Supabase** para base de datos (opcional)
+- **Cuenta de Prisma Data Platform** para base de datos (opcional)
 
 ## 🚀 Instalación y Configuración
 
@@ -74,8 +74,8 @@ cp .env.example .env
 Edita `.env` con tus valores reales:
 
 ```env
-# Base de datos PostgreSQL (Supabase recomendado)
-DATABASE_URL="postgresql://postgres:tu_password@db.tu_proyecto.supabase.co:5432/postgres?sslmode=require"
+# Base de datos PostgreSQL (Prisma Data Platform)
+DATABASE_URL="postgres://username:password@db.prisma.io:5432/postgres?sslmode=require"
 
 # NextAuth
 NEXTAUTH_URL="http://localhost:3000"
@@ -220,7 +220,7 @@ Los vales de pago se generan automáticamente con:
 
 1. **Conectar repositorio** en Vercel
 2. **Configurar variables de entorno**:
-   - `DATABASE_URL`: Connection string de Supabase
+   - `DATABASE_URL`: Connection string de Prisma Data Platform
    - `NEXTAUTH_URL`: URL de producción
    - `NEXTAUTH_SECRET`: Secret seguro
 3. **Desplegar**: Vercel ejecuta build automáticamente
@@ -228,7 +228,7 @@ Los vales de pago se generan automáticamente con:
 ### Variables de Entorno en Producción
 
 ```env
-DATABASE_URL=postgresql://postgres:tu_password@db.tu_proyecto.supabase.co:5432/postgres?sslmode=require
+DATABASE_URL=postgres://username:password@db.prisma.io:5432/postgres?sslmode=require
 NEXTAUTH_URL=https://tu-dominio.vercel.app
 NEXTAUTH_SECRET=un_secret_muy_seguro_de_al_menos_32_caracteres
 NODE_ENV=production
@@ -309,8 +309,8 @@ npm test
 
 ### Error de conexión a base de datos
 - Verifica `DATABASE_URL` en `.env`
-- Asegúrate de que Supabase esté activo
-- Revisa restricciones de IP en Supabase
+- Asegúrate de que Prisma Data Platform esté activo
+- Revisa configuración en Prisma Data Platform Dashboard
 
 ### Error de build en producción
 - Ejecuta `npm run build` localmente para verificar
@@ -326,8 +326,8 @@ npm test
 
 ### Error de conexión a base de datos
 - Verifica que `DATABASE_URL` sea correcta en `.env`
-- Asegúrate de que Supabase esté activo y accesible
-- Revisa restricciones de IP en Supabase Dashboard
+- Asegúrate de que Prisma Data Platform esté activo y accesible
+- Revisa configuración en Prisma Data Platform Dashboard
 - Verifica que el usuario y contraseña sean correctos
 
 ## 📄 Licencia

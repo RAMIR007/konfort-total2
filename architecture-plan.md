@@ -55,7 +55,7 @@ Konfort Total es una tienda en línea moderna desarrollada con Next.js 15, dise�
 │  │ Definition  │  │ Management  │  │   (Generated)       │  │
 │  └─────────────┘  └─────────────┘  └─────────────────────┘  │
 ├─────────────────────────────────────────────────────────────┤
-│                 PostgreSQL (Supabase)                       │
+│                 PostgreSQL (Prisma Data Platform)                       │
 ├─────────────────────────────────────────────────────────────┤
 │  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐  │
 │  │    Users    │  │  Products   │  │      Orders         │  │
@@ -170,7 +170,7 @@ Products List ← Prisma ← Product Model ← Admin Dashboard
 ### Plataforma
 - **Vercel** para hosting y despliegue
 - **GitHub Actions** para CI/CD
-- **Supabase** para base de datos PostgreSQL
+- **Prisma Data Platform** para base de datos PostgreSQL
 
 ### Pipeline de Despliegue
 ```
@@ -182,7 +182,7 @@ Database Migration → Health Check → Production Release
 ### Monitoreo
 - **Vercel Analytics** para métricas de performance
 - **Error tracking** con logging personalizado
-- **Database monitoring** con Supabase Dashboard
+- **Database monitoring** con Prisma Data Platform Dashboard
 
 ## 📱 Características de Accesibilidad
 
