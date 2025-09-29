@@ -17,33 +17,36 @@ Tienda en línea moderna y completa para muebles, especialmente diseñada para e
 ## 🛠️ Tecnologías Utilizadas
 
 ### Frontend
-- **Next.js 15** - Framework React con App Router
-- **TypeScript** - Tipado estático
-- **Tailwind CSS** - Framework CSS utilitario
-- **Recharts** - Gráficos interactivos
+- **Next.js 15.5.4** - Framework React con App Router
+- **TypeScript 5** - Tipado estático avanzado
+- **Tailwind CSS 4.1.13** - Framework CSS utilitario optimizado
+- **Recharts 3.2.1** - Gráficos interactivos y responsivos
 
 ### Backend
-- **Next.js API Routes** - API RESTful
-- **Prisma ORM** - Object-Relational Mapping
-- **PostgreSQL** - Base de datos relacional (Supabase)
-- **NextAuth.js** - Autenticación
+- **Next.js API Routes** - API RESTful con optimizaciones
+- **Prisma ORM 6.16.2** - Object-Relational Mapping moderno
+- **PostgreSQL** - Base de datos relacional (Supabase recomendado)
+- **NextAuth.js 4.24.11** - Autenticación segura y flexible
 
 ### Generación de Documentos
-- **jsPDF** - Generación de vales PDF
+- **jsPDF 3.0.3** - Generación de vales PDF con QR
 
 ### Estado y Gestión
-- **Zustand** - Gestión de estado del carrito
+- **Zustand 5.0.8** - Gestión de estado del carrito optimizada
 
-### Despliegue
-- **Vercel** - Plataforma de despliegue
-- **GitHub** - Control de versiones
+### Despliegue y DevOps
+- **Vercel 48.1.6** - Plataforma de despliegue optimizada
+- **GitHub Actions** - CI/CD automatizado
+- **ESLint 9** - Linting moderno con configuración flat
 
 ## 📋 Prerrequisitos
 
-- **Node.js** 20.x o superior
-- **npm** o **yarn**
-- **PostgreSQL** database (recomendamos Supabase)
+- **Node.js** 20.x o superior (recomendado 22.x LTS)
+- **npm** 18.x o superior (viene con Node.js)
+- **PostgreSQL** database (recomendamos Supabase para producción)
 - **Git** para control de versiones
+- **Cuenta de Vercel** para despliegue (opcional)
+- **Cuenta de Supabase** para base de datos (opcional)
 
 ## 🚀 Instalación y Configuración
 
@@ -62,13 +65,13 @@ npm install
 
 ### 3. Configurar Variables de Entorno
 
-Copia el archivo de ejemplo y configura tus variables:
+Crea el archivo `.env` con la siguiente estructura:
 
 ```bash
 cp .env.example .env
 ```
 
-Edita `.env` con tus valores:
+Edita `.env` con tus valores reales:
 
 ```env
 # Base de datos PostgreSQL (Supabase recomendado)
@@ -76,7 +79,7 @@ DATABASE_URL="postgresql://postgres:tu_password@db.tu_proyecto.supabase.co:5432/
 
 # NextAuth
 NEXTAUTH_URL="http://localhost:3000"
-NEXTAUTH_SECRET="tu_secret_muy_seguro_aqui"
+NEXTAUTH_SECRET="tu_secret_muy_seguro_de_al_menos_32_caracteres_aqui"
 
 # Vercel Blob (opcional, para imágenes)
 BLOB_READ_WRITE_TOKEN="tu_token_de_vercel_blob"
@@ -88,17 +91,24 @@ NODE_ENV="development"
 ### 4. Configurar la Base de Datos
 
 ```bash
-# Generar cliente Prisma
+# Generar cliente Prisma (se ejecuta automáticamente con npm install)
 npx prisma generate
 
-# Ejecutar migraciones
+# Ejecutar migraciones y crear base de datos
 npx prisma db push
+
+# Ver la base de datos en el navegador (opcional)
+npx prisma studio
 ```
 
 ### 5. Ejecutar el Servidor de Desarrollo
 
 ```bash
+# Desarrollo con Turbopack (rápido)
 npm run dev
+
+# Desarrollo estándar
+npx next dev
 ```
 
 La aplicación estará disponible en `http://localhost:3000`
@@ -146,17 +156,26 @@ konfort-total/
 ### Comandos Útiles de Prisma
 
 ```bash
-# Ver esquema actual
+# Ver y editar base de datos en navegador
 npx prisma studio
 
-# Crear migración (si usas migraciones)
+# Crear y aplicar migración (desarrollo)
 npx prisma migrate dev
 
-# Resetear base de datos
+# Aplicar migraciones pendientes (producción)
+npx prisma migrate deploy
+
+# Resetear base de datos (¡cuidado con producción!)
 npx prisma migrate reset
 
-# Generar tipos
+# Generar cliente Prisma
 npx prisma generate
+
+# Validar esquema Prisma
+npx prisma validate
+
+# Formatear esquema Prisma
+npx prisma format
 ```
 
 ## 🔐 Autenticación
@@ -215,17 +234,26 @@ NEXTAUTH_SECRET=un_secret_muy_seguro_de_al_menos_32_caracteres
 NODE_ENV=production
 ```
 
-## 🧪 Testing
+## 🧪 Testing y Calidad de Código
 
 ```bash
-# Ejecutar tests (si implementas)
-npm test
-
-# Linting
+# Linting (ESLint con configuración moderna)
 npm run lint
 
-# Type checking
-npm run type-check
+# Type checking (TypeScript)
+npx tsc --noEmit
+
+# Build de producción (verifica todo)
+npm run build
+
+# Ejecutar script de pre-deploy check
+npm run pre-deploy-check
+
+# Verificar vulnerabilidades de seguridad
+npm audit
+
+# Ejecutar tests (cuando implementes)
+npm test
 ```
 
 ## 🤝 Contribución
@@ -285,14 +313,22 @@ npm run type-check
 - Revisa restricciones de IP en Supabase
 
 ### Error de build en producción
-- Ejecuta `npm run build` localmente
-- Verifica que no haya errores de TypeScript
+- Ejecuta `npm run build` localmente para verificar
+- Verifica que no haya errores de TypeScript con `npx tsc --noEmit`
 - Asegúrate de que todas las dependencias estén instaladas
+- Revisa que las variables de entorno estén configuradas correctamente
 
 ### Problemas de autenticación
 - Verifica `NEXTAUTH_SECRET` (mínimo 32 caracteres)
-- Confirma `NEXTAUTH_URL` correcto
-- Revisa configuración de NextAuth
+- Confirma `NEXTAUTH_URL` correcto (debe incluir https en producción)
+- Revisa configuración de NextAuth en `lib/auth/config.ts`
+- Verifica que la base de datos tenga las tablas de NextAuth
+
+### Error de conexión a base de datos
+- Verifica que `DATABASE_URL` sea correcta en `.env`
+- Asegúrate de que Supabase esté activo y accesible
+- Revisa restricciones de IP en Supabase Dashboard
+- Verifica que el usuario y contraseña sean correctos
 
 ## 📄 Licencia
 
