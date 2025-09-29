@@ -345,3 +345,6 @@ Para soporte técnico o preguntas:
 ---
 
 **Desarrollado con ❤️ para el mercado cubano**
+
+---
+*Última actualización: Septiembre 2025*
